@@ -114,7 +114,7 @@ def main():
     # Run a Speedtest and send the results to influxDB.
     logger("Info", "Running speedtest")
     speedtest = subprocess.run(
-        ["speedtest", "--accept-license", "--accept-gdpr", "-f", "json", "-s", "41817"], capture_output=True)
+        ["speedtest", "--accept-license", "--accept-gdpr", "-f", "json", "-s", TEST_SERVER_ID], capture_output=True)
 
     if speedtest.returncode == 0:  # Speedtest was successful.
         data = format_for_influx(speedtest.stdout)
