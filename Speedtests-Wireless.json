@@ -22,7 +22,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": 4,
-  "iteration": 1644096004125,
+  "iteration": 1644104837220,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -209,7 +209,7 @@
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT distinct(\"download-bandwidth\") FROM \"speedtest\" WHERE (\"interface-name\" = '${networkinterface}') AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": true,
+          "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -229,8 +229,8 @@
           "tags": [
             {
               "key": "interface-name",
-              "operator": "=",
-              "value": "eth0"
+              "operator": "=~",
+              "value": "/^$networkinterface$/"
             }
           ]
         },
@@ -258,7 +258,7 @@
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT distinct(\"upload-bandwidth\") FROM \"speedtest\" WHERE (\"interface-name\" = '${networkinterface}') AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": true,
+          "rawQuery": false,
           "refId": "B",
           "resultFormat": "time_series",
           "select": [
@@ -278,8 +278,8 @@
           "tags": [
             {
               "key": "interface-name",
-              "operator": "=",
-              "value": "eth0"
+              "operator": "=~",
+              "value": "/^$networkinterface$/"
             }
           ]
         }
@@ -396,7 +396,7 @@
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT distinct(\"download-bytes\") FROM \"speedtest\" WHERE (\"interface-name\" = '${networkinterface}') AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": true,
+          "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -416,8 +416,8 @@
           "tags": [
             {
               "key": "interface-name",
-              "operator": "=",
-              "value": "eth0"
+              "operator": "=~",
+              "value": "/^$networkinterface$/"
             }
           ]
         },
@@ -445,7 +445,7 @@
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT distinct(\"upload-bytes\") FROM \"speedtest\" WHERE (\"interface-name\" = '${networkinterface}') AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": true,
+          "rawQuery": false,
           "refId": "B",
           "resultFormat": "time_series",
           "select": [
@@ -465,8 +465,8 @@
           "tags": [
             {
               "key": "interface-name",
-              "operator": "=",
-              "value": "eth0"
+              "operator": "=~",
+              "value": "/^$networkinterface$/"
             }
           ]
         },
@@ -624,7 +624,7 @@
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT distinct(\"latency\") FROM \"speedtest\" WHERE (\"interface-name\" = '${networkinterface}') AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": true,
+          "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -644,51 +644,10 @@
           "tags": [
             {
               "key": "interface-name",
-              "operator": "=",
-              "value": "eth0"
+              "operator": "=~",
+              "value": "/^$networkinterface$/"
             }
           ]
-        },
-        {
-          "alias": "Jitter",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "pU6Cbimgz"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "ping",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "jitter"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "distinct"
-              }
-            ]
-          ],
-          "tags": []
         }
       ],
       "title": "Ping",
@@ -800,7 +759,7 @@
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT distinct(\"jitter\") FROM \"speedtest\" WHERE (\"interface-name\" = '${networkinterface}') AND $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": true,
+          "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -820,60 +779,17 @@
           "tags": [
             {
               "key": "interface-name",
-              "operator": "=",
-              "value": "eth0"
+              "operator": "=~",
+              "value": "/^$networkinterface$/"
             }
           ]
-        },
-        {
-          "alias": "Jitter",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "pU6Cbimgz"
-          },
-          "groupBy": [
-            {
-              "params": [
-                "$__interval"
-              ],
-              "type": "time"
-            },
-            {
-              "params": [
-                "null"
-              ],
-              "type": "fill"
-            }
-          ],
-          "measurement": "ping",
-          "orderByTime": "ASC",
-          "policy": "default",
-          "query": "SELECT distinct(\"jitter\") FROM \"ping\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": true,
-          "refId": "B",
-          "resultFormat": "time_series",
-          "select": [
-            [
-              {
-                "params": [
-                  "jitter"
-                ],
-                "type": "field"
-              },
-              {
-                "params": [],
-                "type": "distinct"
-              }
-            ]
-          ],
-          "tags": []
         }
       ],
       "title": "Jitter",
       "type": "timeseries"
     }
   ],
-  "refresh": false,
+  "refresh": "",
   "schemaVersion": 34,
   "style": "dark",
   "tags": [],
@@ -942,8 +858,8 @@
     ]
   },
   "timezone": "",
-  "title": "Speedtests - Wireless",
+  "title": "Speedtests-Wireless",
   "uid": "l5Q4aNWRk",
-  "version": 4,
+  "version": 9,
   "weekStart": ""
 }

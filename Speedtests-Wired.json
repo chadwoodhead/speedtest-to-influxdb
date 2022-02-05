@@ -22,7 +22,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": 3,
-  "iteration": 1644095916336,
+  "iteration": 1644104805400,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -736,7 +736,7 @@
       "pluginVersion": "8.3.4",
       "targets": [
         {
-          "alias": "Latency",
+          "alias": "Jitter",
           "datasource": {
             "type": "influxdb",
             "uid": "pU6Cbimgz"
@@ -858,8 +858,8 @@
     ]
   },
   "timezone": "",
-  "title": "Speedtests - Wired",
+  "title": "Speedtests-Wired",
   "uid": "qARRyNaW1",
-  "version": 11,
+  "version": 13,
   "weekStart": ""
 }
