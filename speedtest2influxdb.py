@@ -4,6 +4,7 @@ import json
 import subprocess
 import os
 import argparse
+import configparser
 
 from influxdb import InfluxDBClient
 from datetime import datetime
@@ -13,17 +14,28 @@ parser = argparse.ArgumentParser(description='Run a Speedtest and store results 
 parser.add_argument("-v", "--verbose", help="Run in verbose mode", action="store_true")
 args = parser.parse_args()
 
-# InfluxDB Settings
-DB_ADDRESS = os.environ.get('DB_ADDRESS', 'db_hostname.network')
-DB_PORT = os.environ.get('DB_PORT', 8086)
-DB_USER = os.environ.get('DB_USER', 'db_username')
-DB_PASSWORD = os.environ.get('DB_PASSWORD', 'db_password')
-DB_DATABASE = os.environ.get('DB_DATABASE', 'speedtest_db')
-DB_RETRY_INVERVAL = int(os.environ.get('DB_RETRY_INVERVAL', 60)) # Time before retrying a failed data upload.
+def read_ini(file_path):
+    read_ini.config = configparser.ConfigParser()
+    read_ini.config.read(file_path)
+ 
+read_ini("config.ini")
 
-# Speedtest Settings
-TEST_INTERVAL = int(os.environ.get('TEST_INTERVAL', 1800))  # Time between tests (in seconds).
-TEST_FAIL_INTERVAL = int(os.environ.get('TEST_FAIL_INTERVAL', 60))  # Time before retrying a failed Speedtest (in seconds).
+#Read in generic settings
+ENVIRONMENT = read_ini.config['APP']['ENVIRONMENT']
+DEBUG = read_ini.config['APP']['DEBUG']
+
+#Read in InfluxDB settings
+DB_USERNAME = read_ini.config['DATABASE']['DB_USERNAME']
+DB_PASSWORD = read_ini.config['DATABASE']['DB_PASSWORD']
+DB_HOST = read_ini.config['DATABASE']['DB_HOST']
+DB_PORT = read_ini.config['DATABASE']['DB_PORT']
+DB_DATABASE = read_ini.config['DATABASE']['DB_DATABASE']
+DB_RETRY_INVERVAL = read_ini.config['DATABASE']['DB_RETRY_INVERVAL']
+
+#Read in Speedtest settings
+TEST_INTERVAL = read_ini.config['SPEEDTEST']['TEST_INTERVAL']
+TEST_FAIL_INTERVAL = read_ini.config['SPEEDTEST']['TEST_FAIL_INTERVAL']
+TEST_SERVER_ID = read_ini.config['SPEEDTEST']['TEST_SERVER_ID']
 
 if args.verbose:
     PRINT_DATA = True # Do you want to see the results in your logs?
@@ -31,7 +43,7 @@ else:
     PRINT_DATA = False # Do you want to see the results in your logs?
 
 influxdb_client = InfluxDBClient(
-    DB_ADDRESS, DB_PORT, DB_USER, DB_PASSWORD, None)
+    DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, None)
 
 def str2bool(v):
   return v.lower() in ("yes", "true", "t", "1")

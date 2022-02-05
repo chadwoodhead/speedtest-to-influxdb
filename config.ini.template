@@ -1,0 +1,19 @@
+# Generic settings
+[APP]
+ENVIRONMENT = PROD
+DEBUG = False
+
+#InfluxDB settings
+[DATABASE]
+DB_USERNAME = username
+DB_PASSWORD = password
+DB_HOST = 127.0.0.1
+DB_PORT = 8086
+DB_DATABASE = monitor
+DB_RETRY_INVERVAL = 60 # Time before retrying a failed data upload.
+
+#Speedtest settings
+[SPEEDTEST]
+TEST_INTERVAL = 1800 # Time between tests (in seconds).
+TEST_FAIL_INTERVAL = 60 # Time before retrying a failed Speedtest (in seconds).
+TEST_SERVER_ID = 41817
