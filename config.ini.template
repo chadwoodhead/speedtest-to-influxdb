@@ -10,10 +10,14 @@ DB_PORT = 8086
 DB_USERNAME = username
 DB_PASSWORD = password
 DB_DATABASE = monitor
-DB_RETRY_INVERVAL = 60 # Time before retrying a failed data upload.
+#Time before retrying a failed data upload.
+DB_RETRY_INVERVAL = 60
+
 
 #Speedtest settings
 [SPEEDTEST]
-TEST_INTERVAL = 1800 # Time between tests (in seconds).
-TEST_FAIL_INTERVAL = 60 # Time before retrying a failed Speedtest (in seconds).
+# Time between tests (in seconds).
+TEST_INTERVAL = 1800
+#Time before retrying a failed Speedtest (in seconds).
+TEST_FAIL_INTERVAL = 60
 TEST_SERVER_ID = 41817
