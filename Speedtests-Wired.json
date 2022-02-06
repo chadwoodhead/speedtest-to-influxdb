@@ -22,7 +22,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": 3,
-  "iteration": 1644104805400,
+  "iteration": 1644155165323,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -143,6 +143,7 @@
           },
           "links": [],
           "mappings": [],
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -174,7 +175,7 @@
             "mean",
             "min",
             "max",
-            "diff"
+            "range"
           ],
           "displayMode": "table",
           "placement": "bottom"
@@ -330,6 +331,7 @@
           },
           "links": [],
           "mappings": [],
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -558,6 +560,7 @@
           },
           "links": [],
           "mappings": [],
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -589,7 +592,7 @@
             "mean",
             "min",
             "max",
-            "diff"
+            "range"
           ],
           "displayMode": "table",
           "placement": "bottom"
@@ -693,6 +696,7 @@
           },
           "links": [],
           "mappings": [],
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -724,7 +728,7 @@
             "mean",
             "min",
             "max",
-            "diff"
+            "range"
           ],
           "displayMode": "table",
           "placement": "bottom"
@@ -860,6 +864,6 @@
   "timezone": "",
   "title": "Speedtests-Wired",
   "uid": "qARRyNaW1",
-  "version": 13,
+  "version": 15,
   "weekStart": ""
 }
